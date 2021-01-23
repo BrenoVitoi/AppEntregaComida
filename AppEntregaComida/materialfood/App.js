@@ -10,6 +10,7 @@ import {
   StatusBar,
 } from 'react-native';
 
+import {Button} from 'react-native-paper';
 
 
 const App =  () => {
@@ -19,7 +20,7 @@ const App =  () => {
       <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic">
-          
+          <Button mode='contained' onPress={()=>{}}>Clique Aqui</Button>
           
         </ScrollView>
       </SafeAreaView>
