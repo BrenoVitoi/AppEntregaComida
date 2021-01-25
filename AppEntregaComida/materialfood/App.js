@@ -1,12 +1,11 @@
 import React from 'react';
-import ProductDetail from './app/ui/views/ProductDetail/ProductDetail';
-import ProductsView from './app/ui/views/ProductsView/ProductsView';
-import ProductDetail from './app/ui/views/ProductDetail/ProductDetail';
+import BottomNavigation from './app/ui/views/BottomNavigation/BottomNavigation';
+
 
 const App =  () => {
   return (
     <>
-     <ProductsView />
+      <BottomNavigation />
     </>
   );
 };
