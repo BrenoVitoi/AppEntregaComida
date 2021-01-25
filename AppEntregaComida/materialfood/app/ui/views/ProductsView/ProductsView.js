@@ -4,8 +4,9 @@ import {Appbar, Card, Button, Paragraph} from 'react-native-paper';
 import { Button, ScrollView } from 'react-native';
 import { ApiService } from '../../..data/services/ApiService';
 import { ProductContext } from '../../providers/ProductProvider';
-import { productsResponse } from '../../../data/actions/ProductActions';
+import { productSelect, productsResponse } from '../../../data/actions/ProductActions';
 import {NumberService} from '../../../data/services/NumberService';
+import ProductDetail from '../ProductDetail/ProductDetail';
 
 
 const ViewContainer = styled.SafeAreaView`
@@ -24,6 +25,23 @@ export default function ProductsView(props) {
             .then(productsList => productDispatch(productsResponse(productList)))
     }, [])
 
+    function selectProduct(product){
+        productDispatch(productSelect(product))
+    }
+
+    if(selectProduct){
+       return (
+        <ViewContainer>
+            <Appbar.Header>
+                <Appbar.BackAction onPress={() => selectProduct(null)} />
+                <Appbar.Content title={selectedProduct.name} />
+            </Appbar.Header>
+            <ProductDetail />
+        </ViewContainer>
+       
+       ) 
+    }
+
     return(
         <ViewContainer>
             <Appbar.Header>
@@ -35,7 +53,7 @@ export default function ProductsView(props) {
                    
                     <Card.Title 
                         title={item.name}
-                        right={(props) => <Button>Selecionar</Button>}
+                        right={(props) => <Button onPress={()=> selectProduct(item)}>Selecionar</Button>}
                     />
                     <Card.Content>
                         <Paragraph>{NumberService.currency(item.price)}</Paragraph>
